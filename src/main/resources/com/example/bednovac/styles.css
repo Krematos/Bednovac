@@ -1,0 +1,19 @@
+.left-panel-background {
+    -fx-background-image: url("/com/example/bednovac/images/left-panel-background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+}
+
+.right-panel-background {
+    -fx-background-image: url("/com/example/bednovac/images/right-panel-background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+}
+
+
+
+
+
+
