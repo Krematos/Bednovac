@@ -37,9 +37,14 @@
     -fx-border-width: 1px;
 }
 
-#imageView{
-    -fx-foreground-image: url("/com/example/bednovac/images/cases.png");
-        -fx-background-size: cover;
-        -fx-background-position: center;
-        -fx-background-repeat: no-repeat;
+.text-field:focused {
+    -fx-border-color: #0074D9;
+    -fx-border-width: 2px;
+}
+
+#resultPane{
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+    -fx-background-radius: 15px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);
 }

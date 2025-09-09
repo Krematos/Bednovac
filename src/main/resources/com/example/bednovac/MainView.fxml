@@ -5,23 +5,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<SplitPane fx:id="mainSplitPane" id="mainSplitPane" dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="/com/example/bednovac/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bednovac.controller.MainController">
+<SplitPane id="mainSplitPane" fx:id="mainSplitPane" dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="/com/example/bednovac/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bednovac.controller.MainController">
         <items>
-          <AnchorPane fx:id="leftAnchorPane" id="leftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane id="leftAnchorPane" fx:id="leftAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <ChoiceBox fx:id="caseChoiceBox" layoutX="13.0" layoutY="14.0" prefWidth="150.0" />
-                  <Button fx:id="resetButton" id="reserButton" layoutX="27.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleResetButtonClick" prefHeight="48.0" prefWidth="113.0" text="Reset" textFill="#e10808">
+                  <Button id="reserButton" fx:id="resetButton" layoutX="27.0" layoutY="291.0" mnemonicParsing="false" onAction="#handleResetButtonClick" prefHeight="48.0" prefWidth="113.0" text="Reset" textFill="#e10808">
                <font>
                   <Font size="28.0" />
                </font></Button>
-                  <Button fx:id="exchangeButton" id="exchangeButton" layoutX="13.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleExchangeButtonClick" prefHeight="75.0" prefWidth="150.0" text="Exchange">
+                  <Button id="exchangeButton" fx:id="exchangeButton" layoutX="13.0" layoutY="59.0" mnemonicParsing="false" onAction="#handleExchangeButtonClick" prefHeight="75.0" prefWidth="150.0" text="Exchange">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Button>
                </children>
             </AnchorPane>
-          <AnchorPane fx:id="rightAnchorPane" id="rightAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+          <AnchorPane id="rightAnchorPane" fx:id="rightAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <ChoiceBox fx:id="currencyChoiceBox" layoutX="33.0" layoutY="14.0" prefWidth="350.0" />
                   <TextField fx:id="amountTextField" layoutX="33.0" layoutY="60.0" prefHeight="75.0" prefWidth="350.0" promptText="Enter the amount">
@@ -29,14 +29,18 @@
                         <Font size="32.0" />
                      </font>
                   </TextField>
-                  <Pane fx:id="resultPane" layoutX="33.0" layoutY="146.0" prefHeight="200.0" prefWidth="350.0">
+                  <Pane id="resultPane" fx:id="resultPane" layoutX="33.0" layoutY="146.0" prefHeight="200.0" prefWidth="350.0">
                      <children>
                         <Label fx:id="casesLabel" layoutX="229.0" layoutY="37.0" prefHeight="30.0" prefWidth="100.0" text="Cases:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ImageView fx:id="imageView" id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView id="imageView" fx:id="imageView" fitHeight="139.0" fitWidth="200.0" layoutX="14.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/com/example/bednovac/images/cases.png" />
+                            </image>
+                        </ImageView>
                         <Label fx:id="keysLabel" layoutX="228.0" layoutY="91.0" prefHeight="30.0" prefWidth="100.0" text="Keys:">
                            <font>
                               <Font size="18.0" />
