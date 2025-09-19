@@ -1,12 +1,12 @@
 #leftAnchorPane {
-    -fx-background-image: url("/com/example/bednovac/images/left.jfif");
+    -fx-background-image: url("images/left.jfif");
         -fx-background-size: cover;
         -fx-background-position: center;
         -fx-background-repeat: no-repeat;
 }
 
 #rightAnchorPane {
-    -fx-background-image: url("/com/example/bednovac/images/right-panel-background.jpg");
+    -fx-background-image: url("images/right-panel-background.jpg");
     -fx-background-size: cover;
     -fx-background-position: center;
     -fx-background-repeat: no-repeat;
