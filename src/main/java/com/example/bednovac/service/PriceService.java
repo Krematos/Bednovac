@@ -13,6 +13,11 @@ import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Služba pro získávání cen beden a směnných kurzů.
+ * Tato třída spravuje cachování dat, aby se minimalizoval počet volání
+ * externího API.
+ */
 public class PriceService {
     private static final Logger LOGGER = Logger.getLogger(PriceService.class.getName());
 
@@ -26,9 +31,18 @@ public class PriceService {
         this.apiClient = apiClient;
     }
 
+    /**
+     * Získá cenu bedny (Case) podle jejího názvu.
+     * Pokud je cena uložena v cache a je validní, vrátí ji z cache.
+     * Jinak ji stáhne z API a uloží do cache.
+     *
+     * @param caseName Název bedny.
+     * @return CompletableFuture s objektem Case (obsahujícím cenu).
+     */
     public CompletableFuture<Case> getCasePrice(String caseName) {
         CacheEntry<Case> cachedEntry = casePriceCache.get(caseName);
-        if (cachedEntry != null && !cachedEntry.data.getName().isEmpty() && !isCacheExpired(cachedEntry.timestamp, Constants.CASE_CACHE_EXPIRY_MINUTES)) {
+        if (cachedEntry != null && !cachedEntry.data.getName().isEmpty()
+                && !isCacheExpired(cachedEntry.timestamp, Constants.CASE_CACHE_EXPIRY_MINUTES)) {
             LOGGER.log(Level.INFO, "Returning cached price for case: " + caseName);
             return CompletableFuture.completedFuture(cachedEntry.data);
         }
@@ -44,18 +58,26 @@ public class PriceService {
                     }
                     return casePrice;
                 })
-        .exceptionally(e -> {
-            LOGGER.log(Level.WARNING, "FAILED to fetch case price for: " + caseName, e);
-            if(cachedEntry != null) {
-                LOGGER.log(Level.INFO, "Returning cached price for case: " + caseName);
-                return cachedEntry.data;
-            }
-            return null;
-        });
+                .exceptionally(e -> {
+                    LOGGER.log(Level.WARNING, "FAILED to fetch case price for: " + caseName, e);
+                    if (cachedEntry != null) {
+                        LOGGER.log(Level.INFO, "Returning cached price for case: " + caseName);
+                        return cachedEntry.data;
+                    }
+                    return null;
+                });
     }
 
+    /**
+     * Získá aktuální směnné kurzy.
+     * Pokud jsou kurzy v cache a jsou validní, vrátí je z cache.
+     * Jinak je stáhne z API a uloží do cache.
+     *
+     * @return CompletableFuture s objektem Exchange (obsahujícím kurzy).
+     */
     public CompletableFuture<Exchange> getExchange() {
-        if (exchangeCache != null && !isCacheExpired(exchangeCache.timestamp, Constants.EXCHANGE_RATE_CACHE_EXPIRY_MINUTES)) {
+        if (exchangeCache != null
+                && !isCacheExpired(exchangeCache.timestamp, Constants.EXCHANGE_RATE_CACHE_EXPIRY_MINUTES)) {
             LOGGER.log(Level.INFO, "Returning exchange rates from cache.");
             return CompletableFuture.completedFuture(exchangeCache.data);
         }
@@ -70,19 +92,20 @@ public class PriceService {
                 })
                 .exceptionally(e -> {
                     LOGGER.log(Level.WARNING, "FAILED to fetch exchange rates.", e);
-                    if (exchangeCache != null && !isCacheExpired(exchangeCache.timestamp, Constants.EXCHANGE_RATE_CACHE_EXPIRY_MINUTES)) {
+                    if (exchangeCache != null
+                            && !isCacheExpired(exchangeCache.timestamp, Constants.EXCHANGE_RATE_CACHE_EXPIRY_MINUTES)) {
                         LOGGER.log(Level.INFO, "Returning cached exchange rates.");
                         return exchangeCache.data;
                     }
                     return null;
                 });
 
-
     }
 
     /**
      * Pomocná metoda pro kontrolu expirace cache.
-     * @param timestamp Čas, kdy byla data uložena do cache.
+     * 
+     * @param timestamp     Čas, kdy byla data uložena do cache.
      * @param expiryMinutes Počet minut, po kterých cache expiruje.
      * @return True, pokud cache expirovala, jinak false.
      */
@@ -92,6 +115,7 @@ public class PriceService {
 
     /**
      * Vnitřní pomocná třída pro uchovávání dat v cache spolu s časovým razítkem.
+     * 
      * @param <T> Typ dat uložených v cache.
      */
     private static class CacheEntry<T> {
@@ -104,28 +128,17 @@ public class PriceService {
         }
     }
 
-
-
     public double keyPrice() {
         return Constants.KEY_PRICE_USD;
     }
 
-
-
+    /**
+     * Vrátí cenu klíče definovanou v konstantách.
+     * 
+     * @return Cena klíče v USD.
+     */
     public double getKeyPrice() {
         return keyPrice();
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

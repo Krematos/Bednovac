@@ -2,21 +2,25 @@ package com.example.bednovac.model;
 
 import java.util.Objects;
 
+/**
+ * Třída reprezentující bednu (Case) ve hře.
+ * Obsahuje název bedny a její aktuální cenu v USD.
+ */
 public class Case {
     private String caseName;
     private double casePriceUsd;
 
     /**
-     * Constructor for Case class.
+     * Konstruktor třídy Case.
      *
-     * @param caseName Name of the case.
-     * @param casePriceUsd Price of the case.
+     * @param caseName     Název bedny.
+     * @param casePriceUsd Cena bedny v USD.
      */
-    public Case( String caseName, double casePriceUsd) {
-        if(caseName == null || caseName.isEmpty()) {
+    public Case(String caseName, double casePriceUsd) {
+        if (caseName == null || caseName.isEmpty()) {
             throw new IllegalArgumentException("Case name cannot be null or empty");
         }
-        if(casePriceUsd < 0) {
+        if (casePriceUsd < 0) {
             throw new IllegalArgumentException("Case price cannot be negative");
         }
         this.caseName = caseName;
@@ -25,8 +29,10 @@ public class Case {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Case aCase = (Case) o;
         return Double.compare(aCase.casePriceUsd, casePriceUsd) == 0 &&
                 Objects.equals(caseName, aCase.caseName);
@@ -47,22 +53,40 @@ public class Case {
 
     // Getters and Setters
 
+    /**
+     * Vrátí název bedny.
+     * 
+     * @return Název bedny.
+     */
     public String getName() {
         return caseName;
     }
 
+    /**
+     * Nastaví název bedny.
+     * 
+     * @param name Nový název bedny.
+     */
     public void setName(String name) {
         this.caseName = caseName;
     }
 
+    /**
+     * Vrátí cenu bedny v USD.
+     * 
+     * @return Cena bedny.
+     */
     public double getPrice() {
         return casePriceUsd;
     }
 
+    /**
+     * Nastaví cenu bedny v USD.
+     * 
+     * @param price Nová cena bedny.
+     */
     public void setPrice(double price) {
         this.casePriceUsd = price;
     }
-
-
 
 }

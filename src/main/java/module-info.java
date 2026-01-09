@@ -1,3 +1,8 @@
+/**
+ * Modul `bednovac` je hlavní modul aplikace, která slouží k výpočtu ceny CS:GO
+ * beden a klíčů.
+ * Definuje závislosti na JavaFX a modulech pro zpracování JSON a HTTP.
+ */
 module bednovac {
     requires javafx.controls;
     requires javafx.fxml;

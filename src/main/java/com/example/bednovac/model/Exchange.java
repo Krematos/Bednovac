@@ -24,7 +24,7 @@ public class Exchange {
             throw new IllegalArgumentException("Rates cannot be null or empty");
         }
         this.baseCurrency = baseCurrency;
-        this.rates = new HashMap<>(rates); // Vytvoříme kopii mapy, aby byla neměnná
+        this.rates = new HashMap<>(rates); // Vytvoří kopii mapy, aby byla neměnná
     }
 
 
@@ -77,8 +77,8 @@ public class Exchange {
             return amount / rateFromBase; // Převod z fromMena na baseCurrency
         }
         else {
-            double amountInBase = amount / getRate(fromMena); // Nejprve převedeme amount na baseCurrency
-            return amountInBase * getRate(toMena); // Poté převedeme na toMena
+            double amountInBase = amount / getRate(fromMena); // Nejprve převede amount na baseCurrency
+            return amountInBase * getRate(toMena); // Poté převede na toMena
         }
     }
     @Override

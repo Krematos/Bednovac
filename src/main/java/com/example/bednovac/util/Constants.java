@@ -15,13 +15,7 @@ public class Constants {
 
     public static final String CASE_PRICE_API_URL = "https://steamcommunity.com/market/priceoverview/?appid=%s&currency=%s&market_hash_name=%s"; // URL pro API získání ceny case
 
- //   public static final String CASE_API_KEY = "SXB3YwBm5_upIKO6EQF8fqGGMoI"; // API klíč pro získání ceny case
-
     public static final String EXCHANGE_RATE_API_URL = "https://api.frankfurter.app/latest?base=USD" ; // URL pro API získání směnných kurzů
-
- //   public static final String EXCHANGE_RATE_API_URL = "https://v6.exchangerate-api.com/v6/168ce4f04cfcbbe995bd493c02c7f01a/latest/USD" ; // URL pro API získání směnných kurzů
-
- //   public static final String EXCHANGE_RATE_API_KEY = "168ce4f04cfcbbe995bd493c02c7f01a"; // API klíč pro získání směnných kurzů
 
     public static final int EXCHANGE_RATE_CACHE_EXPIRY_MINUTES = 120; // 2 hodiny - Doba expirace cache směnných kurzů v minutách
 
